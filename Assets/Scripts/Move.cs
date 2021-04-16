@@ -6,10 +6,12 @@ public class Move : MonoBehaviour
 {
     public float speed;
     private Transform myTransform;
+    private Rigidbody myRigidbody;
 
     private void Start()
     {
         myTransform = transform;
+        myRigidbody = GetComponent<Rigidbody>();
     }
     
     private void Update()
@@ -39,5 +41,7 @@ public class Move : MonoBehaviour
         direction = direction.normalized;
 
         myTransform.Translate(direction * Time.deltaTime * speed, Space.World);
+
+        myRigidbody.velocity = Vector3.zero;
     }
 }
