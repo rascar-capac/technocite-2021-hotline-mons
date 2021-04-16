@@ -6321,6 +6321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzleFlash: {fileID: 165900106}
   collisionExplosionPrefab: {fileID: 5455739876826911358, guid: 8c6d5308a3272364285b6198195becb5, type: 3}
+  bulletTrailPrefab: {fileID: 7223319708148292585, guid: 46f37e8587a456241b3f2ec3609539e6, type: 3}
 --- !u!1001 &2114002361
 PrefabInstance:
   m_ObjectHideFlags: 0
