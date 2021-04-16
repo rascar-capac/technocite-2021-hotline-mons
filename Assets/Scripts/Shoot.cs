@@ -7,20 +7,23 @@ public class Shoot : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public ParticleSystem collisionExplosionPrefab;
     public TrailRenderer bulletTrailPrefab;
+    public float shootPeriod;
     private Transform _transform;
     private RaycastHit _hitInfo;
     private bool _isHit;
+    private float _nextShootTime;
 
     private void Start()
     {
         _transform = transform;
+        _nextShootTime = 0f;
     }
 
     private void Update()
     {
         _isHit = Physics.Raycast(_transform.position, _transform.forward, out _hitInfo);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && Time.time >= _nextShootTime)
         {
             muzzleFlash.Play();
             TrailRenderer bulletTrail = Instantiate(bulletTrailPrefab, _transform.position, Quaternion.identity);
@@ -34,6 +37,8 @@ public class Shoot : MonoBehaviour
                 Destroy(collisionExplosion.gameObject, 1f);
                 bulletTrail.transform.position = _hitInfo.point;
             }
+
+            _nextShootTime = Time.time + shootPeriod;
         }
     }
 
